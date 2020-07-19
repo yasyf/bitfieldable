@@ -1,8 +1,6 @@
 # Bitfieldable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bitfieldable`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The `Bitfieldable` gem allows you to define a set of boolean flag attributes that are backed by a single integer bitfield.
 
 ## Installation
 
@@ -22,7 +20,30 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+For example, create a `User` model with an `int NOT NULL` field called `flags`, which defaults to 0.
+
+```ruby
+class User
+  include Bitfieldable::Concern
+
+  bitfields flags: %i[admin special shadowbanned]
+end
+
+user = User.new
+
+user.admin? # false
+user.admin!
+user.admin? # true
+user.flags # 1
+
+user.flip_special!
+user.special? # true
+user.flags # 3
+
+user.shadowbanned = true
+user.shadowbanned? # true
+user.flags # 7
+```
 
 ## Development
 
@@ -32,5 +53,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bitfieldable.
+Bug reports and pull requests are welcome on GitHub at https://github.com/yasyf/bitfieldable.
 

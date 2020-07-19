@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['yasyfm@gmail.com']
 
   spec.summary       = 'Implement boolean flags as integer bitfields.'
+  spec.description   = 'The `Bitfieldable` gem allows you to define a set of boolean flag attributes that are backed by a single integer bitfield.'
   spec.homepage      = 'https://github.com/yasyf/bitfieldable'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
